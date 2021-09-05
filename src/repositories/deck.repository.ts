@@ -13,7 +13,7 @@ export class DeckRepository extends DefaultCrudRepository<
     super(Deck, dataSource);
   }
 
-  async draw(id: string, count: number): Promise<DrewCardsDTO> {
+  async draw(id: string, count: number = 1): Promise<DrewCardsDTO> {
     const deck = await this.findById(id);
 
     let cards: Card[] = [];
