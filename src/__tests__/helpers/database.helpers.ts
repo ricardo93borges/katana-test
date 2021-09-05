@@ -30,7 +30,7 @@ export function givenDeckData(data?: Partial<Deck>) {
     data,
   );
 
-  return new Deck(objData);
+  return new Deck({...objData, remaining: objData.cards.length});
 }
 
 export async function givenDeck(data?: Partial<Deck>) {
