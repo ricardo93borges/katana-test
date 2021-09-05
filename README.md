@@ -3,6 +3,8 @@
 This application is generated using [LoopBack 4 CLI](https://loopback.io/doc/en/lb4/Command-line-interface.html) with the
 [initial project layout](https://loopback.io/doc/en/lb4/Loopback-application-layout.html).
 
+This contains a deck model, a deck controller, and a deck repository that uses an in-memory data source.
+
 ## Install dependencies
 
 By default, dependencies were installed when this application was generated.
@@ -63,13 +65,40 @@ npm run lint:fix
 
 ## Tests
 
+There a unit tests for deck controller and integration test for deck controller and repository.
+
 ```sh
 npm test
 ```
 
-## What's next
+## Routes
 
-Please check out [LoopBack 4 documentation](https://loopback.io/doc/en/lb4/) to
-understand how you can continue to add features to this application.
+Create a deck
 
-[![LoopBack](https://github.com/loopbackio/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png)](http://loopback.io/)
+`POST /decks`
+
+```
+curl --request POST \
+  --url http://localhost:3000/decks \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"shuffled": false,
+	"remaining": 52
+}'
+```
+
+Open a deck
+
+`GET /deck/:id/open`
+
+```
+curl --request GET --url http://localhost:3000/decks/d3625aad-a971-4cb8-acf7-6635f1179eaa/open
+```
+
+Draw cards
+
+`GET /decks/:id/draw?count=1`
+
+```
+curl --request GET --url 'http://localhost:3000/decks/d3625aad-a971-4cb8-acf7-6635f1179eaa/draw?count=60'
+```
